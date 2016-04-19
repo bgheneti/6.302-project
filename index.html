@@ -16,11 +16,11 @@
     <div class="wrapper">
         <h1>6.302 midterm project: Quadcopter Yaw Position Control</h1>
         <h2>Youzhi Liang and Banti Gheneti</h2>
-
+        <br>
         <h3>
 <a id="introduction" class="anchor" href="#introduction" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Introduction</h3>
 <p>
-The goal of the lab was to implement a feedback control system to control the yaw, rotation about the vertical axis, of a quadcopter. We supplied a voltage to adjust a remote control's yaw velocity signal and measured the angle of the quadcopter by mounting it on a potentiometer. 
+The goal of the lab was to implement a feedback control system to control the yaw, rotation about the vertical axis, of a quadcopter. We supplied a voltage to adjust the remote control's yaw velocity signal and measured the angle of the quadcopter by mounting it on a potentiometer. 
 We were able to reliably adjust the angle and maintain stability solely using proportional control.
 </p>
 
@@ -106,7 +106,7 @@ Figure 7: Step response for a 120 degree rotation with gain equal to 1. Each poi
 <p>
 We apply loop shaping techniques to compensate this system. For the uncompensated system, the 
 cross-over frequency is around 7.05 rad/s, resulting in a slow response. The goal is to decrease 
-the rising time to 0.1 seconds or smaller. We apply a double-lead compensator C(s) to the system.
+the rise time to 0.1 seconds or smaller. We apply a double-lead compensator C(s) to the system.
 </p>
 <p align="center">
 <img src="photos/formula1.png" width="200">
