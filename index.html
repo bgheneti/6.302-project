@@ -21,13 +21,13 @@
 <a id="introduction" class="anchor" href="#introduction" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Introduction</h3>
 <p>
 The goal of the lab was to implement a feedback control system to control the yaw, rotation about the vertical axis, of a quadcopter. We supplied a voltage to adjust a remote control's yaw velocity signal and measured the angle of the quadcopter by mounting it on a potentiometer. 
-We were able to reliably adjust the angle and maintain stability by the solely using proportional control.
+We were able to reliably adjust the angle and maintain stability solely using proportional control.
 </p>
 
 <h3>
 <a id="rig" class="anchor" href="#rig" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>The rig</h3>
-<p>A rig made out of legos mounts the quadcopter on the potentiometer. The main purposes of the rig are holding the horizontal alignent of the quadcopter, minimizing added rotational friction, and ensuring a strong coupling between the rotation of the quadcopter and the potentiometer.
-The quadcopter is mounted by a series of legos and rods to the rotational axel. This rotational axels is supported by multiple moderately tight holes along its length to maintain straightness while not adding too much friction. The end of the axel is heatshrink wrapped to the potentiometer axel.</p>
+<p>A rig made out of legos mounts the quadcopter on the potentiometer. The main purposes of the rig are holding the horizontal alignent of the quadcopter, minimizing added rotational friction, and ensuring a strong coupling between the rotation of the quadcopter and the rotation of the potentiometer.
+The quadcopter is mounted by a series of legos and rods to the rotational axel. The rotational axel is supported by multiple moderately tight holes along its length. They maintain its straightness while not adding too much friction. The end of the axel is heatshrink wrapped to the potentiometer.</p>
 <p align="center">
 <img src="photos/rig.jpg" width="350">
 <br>
@@ -36,7 +36,7 @@ Figure 1: Lego rig with the mounted quadcopter.
 
 <h3>
 <a id="rotational-velocity" class="anchor" href="#rotational-velocity" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Setting the yaw velocity</h3>
-<p>Wires soldered wires to the joystick potentiometers control yaw velocity and measure lift. The yaw velocity of the quadcopter is set by a Teensy driving the yaw velocity potentiometer's output through a unity gain amplifier. The lift pontetiometer voltage is measured accross trials to ensure consistenty.</p>
+<p>Wires soldered to joystick potentiometers control yaw velocity and measure lift. The yaw velocity of the quadcopter is set by a Teensy driving the yaw velocity potentiometer's output through a unity gain amplifier. The lift pontetiometer voltage is measured across trials to ensure consistency.</p>
 <div style="margin-right:30px; width:45%; display:inline-block">
 <p align="center">
 <img src="photos/controller.jpg" width="400">
@@ -83,14 +83,14 @@ Remote control displaying rotation direction.
 <h3>
 <a id="plant-model" class="anchor" href="#plant-model" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Plant Model</h3>
 <p>
-The plant can be modelled by two steps: thrust dynamics of the propeller; rotation dynamics of a 
+The plant can be modelled by two steps: thrust dynamics of the propeller and rotation dynamics of a 
 rigid-body with a light damping ratio. The thrust dynamics of the propeller can be modelled as a 
-first-order transfer function T(s)/V(s)= K_0/(tau_1*s+1). [1, 2] A similar proper has already been 
+first-order transfer function T(s)/V(s)= K_0/(tau_1*s+1). [1, 2] A similar propeller has already been 
 characterized in Lab 3, of which the time constant is about 0.11 s. The transfer function for the 
-rotation dynamics is theta(s)/T(s)=1/((J*s+B)*s), in which J is the polar moment of inertia of the 
+rotation dynamics is <br> theta(s)/T(s)=1/((J*s+B)*s), in which J is the polar moment of inertia of the 
 copter and B is the damping ratio. We assume any parameter of the system is unknown. Using a 
 feedback loop with gain equal 1, the dominant closed-loop poles can be estimated from the step 
-response. The natural frequency is estimated to be 1.67 rad/s with damping ratio of 0.8. Thus, the 
+response. The natural frequency is estimated to be 1.67 rad/s with a damping ratio of 0.8. Thus, the 
 plant transfer function can be characterized as the following. The step response for 120 degree 
 rotation angle with gain equal 1 is shown in Figure 7, suggesting a good agreement with the 
 experimental data.
@@ -99,7 +99,7 @@ experimental data.
 <p align="center">
 <img src="photos/graph1.png" width="350">
 <br>
-Figure 7: A step response for 120 degree rotation angle with gain equal to 1. Each point of the experimental data corresponds to the mean from three iterations of experiments.</p>
+Figure 7: Step response for a 120 degree rotation with gain equal to 1. Each point of the experimental data corresponds to the mean from three iterations of experiments.</p>
 
 <h3>
 <a id="controller-design" class="anchor" href="#controller design" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Theoretical Controller Design</h3>
