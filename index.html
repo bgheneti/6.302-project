@@ -31,7 +31,7 @@ The quadcopter was mounted by a series of legos and rods to the rotational axel.
 <p align="center">
 <img src="photos/rig.jpg" width="350">
 <br>
-Figure 1: lego rig with the mounted quadcopter
+Figure 1: Lego rig with the mounted quadcopter.
 </p>
 
 <h3>
@@ -41,14 +41,14 @@ Figure 1: lego rig with the mounted quadcopter
 <p align="center">
 <img src="photos/controller.jpg" width="400">
 <br>
-Figure 2: quadcopter remote control
+Figure 2: Quadcopter remote control.
 </p>
 </div>
 <div style="width:45%; display:inline-block">
 <p align="center">
 <img src="photos/controller-board.jpg" width="400">
 <br>
-Figure 3: remote control board with control signal
+Figure 3: Remote control board with control signal.
 </p>
 </div>
 <h3>
@@ -57,7 +57,7 @@ Figure 3: remote control board with control signal
 <p align="center">
 <img src="photos/breadboard_labeled.jpg" width="500">
 <br>
-Figure 4: breadboard with Teensy dev board and opamp buffering yaw velocity potentiometer voltage</p>
+Figure 4: Breadboard with Teensy dev board and opamp buffering yaw velocity potentiometer voltage.</p>
 <h3>
 <a id="pid-control" class="anchor" href="#pid-control" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Proportional control</h3>
 <p>We are able to set the yaw using only proportional control. The system is very stable, although rise time is slow.</p>
@@ -67,7 +67,7 @@ Figure 4: breadboard with Teensy dev board and opamp buffering yaw velocity pote
 <br>
 Figure 5:
 <br>
-alternating quadcopter yaw between -60° and 60°
+Alternating quadcopter yaw between -60° and 60°.
 </p>
 </div>
 <div style="width:45%; display:inline-block">
@@ -76,7 +76,7 @@ alternating quadcopter yaw between -60° and 60°
 <br>
 Figure 6:
 <br>
-remote control displaying rotation direction
+Remote control displaying rotation direction.
 </p>
 </div>
 
@@ -85,7 +85,7 @@ remote control displaying rotation direction
 <p>
 The plant can be modelled by two steps: thrust dynamics of the propeller; rotation dynamics of a 
 rigid-body with a light damping ratio. The thrust dynamics of the propeller can be modelled as a 
-first-order transfer function T(s)/V(s)= K0/(tau_1*s+1). [1, 2] A similar proper has already been 
+first-order transfer function T(s)/V(s)= K_0/(tau_1*s+1). [1, 2] A similar proper has already been 
 characterized in Lab 3, of which the time constant is about 0.11 s. The transfer function for the 
 rotation dynamics is theta(s)/T(s)=1/((J*s+B)*s), in which J is the polar moment of inertia of the 
 copter and B is the damping ratio. We assume any parameter of the system is unknown. Using a 
@@ -94,7 +94,12 @@ response. The natural frequency is estimated to be 1.67 rad/s with damping ratio
 plant transfer function can be characterized as the following. The step response for 120 degree 
 rotation angle with gain equal 1 is shown in Figure 7, suggesting a good agreement with the 
 experimental data.
+
 </p>
+<p align="center">
+<img src="photos/graph1.jpg" width="300">
+<br>
+Figure 7: A step response for 120 degree rotation angle with gain equal 1. Each point of the experimental data corresponds to the mean from three iterations of experiments.</p>
 
 <h3>
 <a id="controller-design" class="anchor" href="#controller design" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Improving Rise Time</h3>
@@ -103,11 +108,20 @@ We apply loop shaping technique to compensate this system. For the uncompensated
 cross-over frequency is around 7.05 rad/s, resulting in a slow response. The goal is to decrease 
 the rising time to 0.1 second or smaller. We apply a double-lead compensator C(s) to the system.
 </p>
+<p align="center">
+<img src="photos/formula1.jpg" width="200">
+<br>
+</p>
 <p>
 The Bode diagrams for uncompensated and compensated systems are shown in Figure 8. With 
 the double-lead compensator, cross-over frequency of 62.5 rad/s and 63.4 degree phase margin 
 are achieved.
 </p>
+<p align="center">
+<img src="photos/graph2.jpg" width="600">
+<br>
+Figure 8: Bode diagrams and step response for uncompensated and compensated system.</p>
+
 <h3>
 <a id="conclusion" class="anchor" href="#conclusion" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Conclusion</h3>
 <p></p>
