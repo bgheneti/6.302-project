@@ -99,14 +99,14 @@ experimental data.
 <p align="center">
 <img src="photos/graph1.png" width="350">
 <br>
-Figure 7: A step response for 120 degree rotation angle with gain equal 1. Each point of the experimental data corresponds to the mean from three iterations of experiments.</p>
+Figure 7: A step response for 120 degree rotation angle with gain equal to 1. Each point of the experimental data corresponds to the mean from three iterations of experiments.</p>
 
 <h3>
-<a id="controller-design" class="anchor" href="#controller design" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Improving Rise Time</h3>
+<a id="controller-design" class="anchor" href="#controller design" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Theoretical Controller Design</h3>
 <p>
-We apply loop shaping technique to compensate this system. For the uncompensated system, the 
+We apply loop shaping techniques to compensate this system. For the uncompensated system, the 
 cross-over frequency is around 7.05 rad/s, resulting in a slow response. The goal is to decrease 
-the rising time to 0.1 second or smaller. We apply a double-lead compensator C(s) to the system.
+the rising time to 0.1 seconds or smaller. We apply a double-lead compensator C(s) to the system.
 </p>
 <p align="center">
 <img src="photos/formula1.png" width="200">
@@ -114,17 +114,13 @@ the rising time to 0.1 second or smaller. We apply a double-lead compensator C(s
 </p>
 <p>
 The Bode diagrams for uncompensated and compensated systems are shown in Figure 8. With 
-the double-lead compensator, cross-over frequency of 62.5 rad/s and 63.4 degree phase margin 
-are achieved.
+the double-lead compensator, a cross-over frequency of 62.5 rad/s and a phase margin of 63.4 degrees are achieved.
 </p>
 <p align="center">
 <img src="photos/graph2.png" width="700">
 <br>
-Figure 8: Bode diagrams and step response for uncompensated and compensated system.</p>
-
-<h3>
-<a id="conclusion" class="anchor" href="#conclusion" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Conclusion</h3>
-<p></p>
+Figure 8: Bode diagrams and step response for the uncompensated and compensated system.</p>
+<br>
 
       <footer>
         <p>This project is maintained by <a href="https://github.com/bgheneti">bgheneti</a></p>
