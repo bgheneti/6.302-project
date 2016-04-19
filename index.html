@@ -31,7 +31,7 @@ The quadcopter was mounted by a series of legos and rods to the rotational axel.
 <p align="center">
 <img src="photos/rig.jpg" width="350">
 <br>
-lego rig with the mounted quadcopter
+Figure 1: lego rig with the mounted quadcopter
 </p>
 
 <h3>
@@ -41,14 +41,14 @@ lego rig with the mounted quadcopter
 <p align="center">
 <img src="photos/controller.jpg" width="400">
 <br>
-quadcopter remote control
+Figure 2: quadcopter remote control
 </p>
 </div>
 <div style="width:45%; display:inline-block">
 <p align="center">
 <img src="photos/controller-board.jpg" width="400">
 <br>
-remote control board with control signal wire
+Figure 3: remote control board with control signal wire
 </p>
 </div>
 <h3>
@@ -57,7 +57,7 @@ remote control board with control signal wire
 <p align="center">
 <img src="photos/breadboard_labeled.jpg" width="500">
 <br>
-breadboard with Teensy dev board and opamps buffering potentiometer and rc rotational velocity voltages</p>
+Figure 4: breadboard with Teensy dev board and opamps buffering potentiometer and rc rotational velocity voltages</p>
 <h3>
 <a id="pid-control" class="anchor" href="#pid-control" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Proportional control</h3>
 <p>We are able to set the yaw using only proportional control. The system is very stable, although rise time is slow.</p>
@@ -65,21 +65,45 @@ breadboard with Teensy dev board and opamps buffering potentiometer and rc rotat
 <p align="center">
 <iframe width="400" height="225" src="https://www.youtube.com/embed/X9NGjneSKB0?t=11s" frameborder="0" allowfullscreen></iframe>
 <br>
-alternating quadcopter yaw between -60° and 60°
+Figure 5: alternating quadcopter yaw between -60° and 60°
 </p>
 </div>
 <div style="width:45%; display:inline-block">
 <p align="center">
 <iframe width="400" height="225" src="https://www.youtube.com/embed/xccgvuP8oxI" frameborder="0" allowfullscreen></iframe>
 <br>
-remote control displaying rotation direction
+Figure 6: remote control displaying rotation direction
 </p>
 </div>
 
 <h3>
-<a id="characterizing-system" class="anchor" href="#characterizing-system" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Characterizing the system</h3>
-<p></p>
+<a id="plant-model" class="anchor" href="#plant-model" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Plant Model</h3>
+<p>
+The plant can be modelled by two steps: thrust dynamics of the propeller; rotation dynamics of a 
+rigid-body with a light damping ratio. The thrust dynamics of the propeller can be modelled as a 
+first-order transfer function T(s)/V(s)= K0/(tau_1*s+1). [1, 2] A similar proper has already been 
+characterized in Lab 3, of which the time constant is about 0.11 s. The transfer function for the 
+rotation dynamics is theta(s)/T(s)=1/((J*s+B)*s), in which J is the polar moment of inertia of the 
+copter and B is the damping ratio. We assume any parameter of the system is unknown. Using a 
+feedback loop with gain equal 1, the dominant closed-loop poles can be estimated from the step 
+response. The natural frequency is estimated to be 1.67 rad/s with damping ratio of 0.8. Thus, the 
+plant transfer function can be characterized as the following. The step response for 120 degree 
+rotation angle with gain equal 1 is shown in Figure 7, suggesting a good agreement with the 
+experimental data.
+</p>
 
+<h3>
+<a id="controller-design" class="anchor" href="#controller design" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Improving Rise Time</h3>
+<p>
+We apply loop shaping technique to compensate this system. For the uncompensated system, the 
+cross-over frequency is around 7.05 rad/s, resulting in a slow response. The goal is to decrease 
+the rising time to 0.1 second or smaller. We apply a double-lead compensator C(s) to the system.
+</p>
+<p>
+The Bode diagrams for uncompensated and compensated systems are shown in Figure 8. With 
+the double-lead compensator, cross-over frequency of 62.5 rad/s and 63.4 degree phase margin 
+are achieved.
+</p>
 <h3>
 <a id="conclusion" class="anchor" href="#conclusion" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Conclusion</h3>
 <p></p>
